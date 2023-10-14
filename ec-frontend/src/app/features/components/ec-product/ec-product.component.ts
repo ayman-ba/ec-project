@@ -5,11 +5,12 @@ import {Store} from "@ngrx/store";
 import {selectIsSubmitting} from "./store/product.reducer";
 import {productActions} from "./store/product.actions";
 import {ProductService} from "./services/product.service";
+import {EcInputComponent} from "../../../shared/components/ec-input/ec-input.component";
 
 @Component({
   selector: 'ec-product',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, EcInputComponent],
   templateUrl: './ec-product.component.html',
   styleUrls: ['./ec-product.component.scss']
 })

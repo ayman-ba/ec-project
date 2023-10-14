@@ -1,22 +1,19 @@
 <div>
   <form [formGroup]="form" (ngSubmit)="onSave()">
     <h3>Add Product</h3>
-    <label for="name">Name: </label>
-    <input type="text" id="name" formControlName="name"/>
+    <ec-input [label]="'Name'"
+              [formControlKey]="'name'"></ec-input>
     <br>
-
-    <label for="price">Price: </label>
-    <input type="number" id="price" formControlName="price"/>
+    <ec-input [label]="'Price'"
+              [type]="'number'"
+              [formControlKey]="'price'"></ec-input>
     <br>
-
-    <label for="category">Category: </label>
-    <input type="text" id="category" formControlName="category"/>
+    <ec-input [label]="'Category'"
+              [formControlKey]="'category'"></ec-input>
     <br>
-
-    <label for="description">Description: </label>
-    <input type="text" id="description" formControlName="description"/>
+    <ec-input [label]="'Description'"
+              [formControlKey]="'description'"></ec-input>
     <br>
-
     <input type="submit" value="Save"/>
   </form>
 </div>
