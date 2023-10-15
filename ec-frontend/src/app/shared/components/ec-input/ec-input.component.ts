@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ControlContainer, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 
@@ -15,28 +15,29 @@ import {ControlContainer, FormControl, FormGroup, ReactiveFormsModule} from "@an
   templateUrl: './ec-input.component.html',
   styleUrls: ['./ec-input.component.scss']
 })
-export class EcInputComponent implements OnInit, OnDestroy {
+export class EcInputComponent implements OnInit {
 
   @Input({required: true}) formControlKey = '';
   @Input({required: true}) label = '';
   @Input() type = 'text';
+  @Input() disabled = false;
+  @Input() placeholder = '';
+  @Input() displayErrorMessage = true;
+  formControl: FormControl<any> | null = null;
 
   constructor(private readonly parentContainer: ControlContainer) {
+  }
+
+  ngOnInit(): void {
+    this.formControl = this.getFormControl();
   }
 
   getParentFormGroup(): FormGroup {
     return this.parentContainer.control as FormGroup;
   }
 
-  ngOnInit(): void {
-    this.getParentFormGroup().addControl(
-      this.formControlKey,
-      new FormControl('', [])
-    )
-  }
-
-  ngOnDestroy(): void {
-    this.getParentFormGroup().removeControl(this.formControlKey);
+  getFormControl(): FormControl<any> {
+    return this.getParentFormGroup().get(this.formControlKey) as FormControl;
   }
 
 }

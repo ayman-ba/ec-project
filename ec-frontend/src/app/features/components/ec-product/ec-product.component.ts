@@ -3,8 +3,6 @@ import {CommonModule} from '@angular/common';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {selectIsSubmitting} from "./store/product.reducer";
-import {productActions} from "./store/product.actions";
-import {ProductService} from "./services/product.service";
 import {EcInputComponent} from "../../../shared/components/ec-input/ec-input.component";
 
 @Component({
@@ -16,22 +14,24 @@ import {EcInputComponent} from "../../../shared/components/ec-input/ec-input.com
 })
 export class EcProductComponent {
 
-  form = this.formBuilder.nonNullable.group({
-    name: ['', Validators.required],
+  // change to TypedForm later
+  productForm = this.formBuilder.nonNullable.group({
+    name: ['', [Validators.required, Validators.email, Validators.maxLength(10)]],
     price: [0, Validators.required],
     category: ['', Validators.required],
     description: ['', Validators.required]
-  })
-   isSubmitting$ = this.store.select(selectIsSubmitting)
+  });
+  isSubmitting$ = this.store.select(selectIsSubmitting)
+  isRequired = Validators.required;
 
   constructor(private readonly formBuilder: FormBuilder,
               private readonly store: Store) {
   }
 
   onSave(): void {
-   console.log(this.form.getRawValue())
-    this.store.dispatch(productActions.saveProduct({
-      productRequest: this.form.getRawValue()
-    }))
+    console.log(this.productForm.getRawValue())
+    // this.store.dispatch(productActions.saveProduct({
+    //   productRequest: this.form.getRawValue()
+    // }))
   }
 }

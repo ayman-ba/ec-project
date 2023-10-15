@@ -1,5 +1,6 @@
 <div>
-  <form [formGroup]="form" (ngSubmit)="onSave()">
+  <form [formGroup]="productForm"
+        (ngSubmit)="onSave()">
     <h3>Add Product</h3>
     <ec-input [label]="'Name'"
               [formControlKey]="'name'"></ec-input>
