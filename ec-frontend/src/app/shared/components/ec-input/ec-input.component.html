@@ -1,8 +1,7 @@
 <label>{{label}}: </label>
 <input [type]="type"
        [formControlName]="formControlKey"/>
-<ng-container *ngIf="displayErrorMessage">
-  <span *ngIf="formControl?.hasError('required')"> This field is required.</span>
-  <span *ngIf="formControl?.hasError('email')"> This field is not a valid email.</span>
-</ng-container>
+<ec-error-message [control]="formControl"
+                  [displayErrorMessage]="displayErrorMessage">
+</ec-error-message>
 
