@@ -2,11 +2,15 @@ import {Component, inject, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ControlContainer, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {EcErrorMessageComponent} from "../ec-error-message/ec-error-message.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {InputType} from "../../../core/types/input.type";
 
 @Component({
   selector: 'ec-input',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, EcErrorMessageComponent],
+  imports: [CommonModule, ReactiveFormsModule, EcErrorMessageComponent,
+    MatFormFieldModule, MatInputModule],
   viewProviders: [
     {
       provide: ControlContainer,
@@ -20,7 +24,7 @@ export class EcInputComponent implements OnInit {
 
   @Input({required: true}) formControlKey = '';
   @Input({required: true}) label = '';
-  @Input() type = 'text';
+  @Input() type: InputType = 'text';
   @Input() disabled = false;
   @Input() placeholder = '';
   @Input() displayErrorMessage = true;

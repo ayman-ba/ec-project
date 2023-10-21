@@ -1,4 +1,5 @@
 <ng-container *ngIf="displayErrorMessage">
-  <span *ngIf="control?.hasError('required')"> This field is required.</span>
-  <span *ngIf="control?.hasError('email')"> This field is not a valid email.</span>
+  <mat-error *ngIf="errorMessage.length > 0">
+    {{errorMessage}}
+  </mat-error>
 </ng-container>

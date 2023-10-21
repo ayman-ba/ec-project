@@ -1,7 +1,10 @@
-<label>{{label}}: </label>
-<input [type]="type"
-       [formControlName]="formControlKey"/>
+<mat-form-field class="input">
+  <mat-label>{{label}}</mat-label>
+  <input matInput
+         [type]="type"
+         [placeholder]="placeholder"
+         [formControlName]="formControlKey">
+</mat-form-field>
 <ec-error-message [control]="formControl"
                   [displayErrorMessage]="displayErrorMessage">
 </ec-error-message>
-
