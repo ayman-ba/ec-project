@@ -8,6 +8,7 @@ import {productFeatureKey, productReducer} from "./features/components/ec-produc
 import {provideHttpClient} from "@angular/common/http";
 import * as productEffects from "./features/components/ec-product/store/product.effects";
 import {provideEffects} from "@ngrx/effects";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,13 +16,14 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideStoreDevtools({
-      maxAge: 25,
-      logOnly: !isDevMode(),
-      autoPause: true,
-      trace: false,
-      traceLimit: 75
+        maxAge: 25,
+        logOnly: !isDevMode(),
+        autoPause: true,
+        trace: false,
+        traceLimit: 75
     }),
     provideState(productFeatureKey, productReducer),
-    provideEffects(productEffects)
-  ]
+    provideEffects(productEffects),
+    provideAnimations()
+]
 };
