@@ -1,0 +1,6 @@
+<div class="products-container">
+  <ec-product-item *ngFor="let product of (products$ | async)"
+                   [product]="product"
+                   (onDeleteEvent)="onDeleteProduct($event)"/>
+</div>
+
