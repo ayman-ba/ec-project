@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>
+  {{confirmationDialogModel.title}}
+</h1>
+<div mat-dialog-content>
+  {{confirmationDialogModel.message}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close
+      (click)="onNotAgree()">
+    {{confirmationDialogModel.notAgreeButtonLabel}}
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial
+          (click)="onAgree()">
+    {{confirmationDialogModel.agreeButtonLabel}}
+  </button>
+</div>
