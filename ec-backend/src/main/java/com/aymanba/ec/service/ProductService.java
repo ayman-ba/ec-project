@@ -6,6 +6,8 @@ import com.aymanba.ec.request.ProductRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -19,5 +21,13 @@ public class ProductService {
                 .description(productRequest.getDescription())
                 .build();
         return productRepository.save(product);
+    }
+
+    public List<Product> getAll() {
+        return productRepository.findAll();
+    }
+
+    public void delete(int productId) {
+        productRepository.deleteById(productId);
     }
 }
