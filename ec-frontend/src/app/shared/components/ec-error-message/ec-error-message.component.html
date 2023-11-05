@@ -1,5 +1,5 @@
 <ng-container *ngIf="displayErrorMessage">
-  <mat-error *ngIf="errorMessage.length > 0">
+  <mat-error *ngIf="errorMessage.length > 0 && control?.touched">
     {{errorMessage}}
   </mat-error>
 </ng-container>
