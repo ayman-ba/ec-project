@@ -1,3 +1,7 @@
+<ec-button [text]="'Add new product'"
+           [type]="'button'"
+           (onClickEvent)="openAddProductModal()" />
+
 <div class="products-container">
   <ec-product-item *ngFor="let product of (products$ | async)"
                    [product]="product"

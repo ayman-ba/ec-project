@@ -12,6 +12,10 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {EcButtonComponent} from "../../../shared/components/ec-button/ec-button.component";
 import {ConfirmationDialogModel} from "../../../shared/models/confirmation-dialog.model";
 import {DialogService} from "../../../shared/services/dialog.service";
+import {DialogModel} from "../../../shared/models/dialog-model";
+import {
+  EcCreateProductFormComponent
+} from "../../../features/ec-product/components/ec-create-product-form/ec-create-product-form.component";
 
 @Component({
   selector: 'app-ec-products-page',
@@ -30,7 +34,14 @@ export class EcProductsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.dispatchGetProducts();
+    this.dispatchGetProducts();
+  }
+
+  openAddProductModal() {
+    const dialogModel: DialogModel = {
+      data: ''
+    };
+    this.dialogService.openDialog<EcCreateProductFormComponent, DialogModel>(EcCreateProductFormComponent, dialogModel);
   }
 
   onDeleteProduct(productId: number): void {
