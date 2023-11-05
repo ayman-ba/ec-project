@@ -1,5 +1,6 @@
-package com.aymanba.ec.model;
+package com.aymanba.ec.model.product;
 
+import com.aymanba.ec.model.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity(name = "product")
-public class Product {
+public class ProductEntity implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(
@@ -34,5 +35,6 @@ public class Product {
     private Integer quantity;
     private String category;
     private String description;
+    private String reference;
     private String manufacturer;
 }

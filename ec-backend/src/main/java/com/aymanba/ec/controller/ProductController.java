@@ -1,6 +1,7 @@
 package com.aymanba.ec.controller;
 
-import com.aymanba.ec.model.Product;
+import com.aymanba.ec.dto.product.ProductDTO;
+import com.aymanba.ec.model.product.ProductEntity;
 import com.aymanba.ec.service.ProductService;
 import com.aymanba.ec.request.ProductRequest;
 import lombok.RequiredArgsConstructor;
@@ -27,14 +28,14 @@ public class ProductController {
 
     @PostMapping
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
-    public ResponseEntity<Product> save(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductEntity> save(@RequestBody ProductRequest productRequest) {
         return new ResponseEntity<>(productService.save(productRequest),
                 HttpStatus.CREATED);
     }
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
-    public ResponseEntity<List<Product>> getAll() {
+    public ResponseEntity<List<ProductDTO>> getAll() {
         return new ResponseEntity<>(productService.getAll(),
                 HttpStatus.OK);
     }
