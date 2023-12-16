@@ -1,5 +1,6 @@
 package com.aymanba.ec.controller;
 
+import com.aymanba.ec.dto.PageDTO;
 import com.aymanba.ec.dto.product.ProductDTO;
 import com.aymanba.ec.model.product.ProductEntity;
 import com.aymanba.ec.service.ProductService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,8 +37,11 @@ public class ProductController {
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
-    public ResponseEntity<List<ProductDTO>> getAll() {
-        return new ResponseEntity<>(productService.getAll(),
+    public ResponseEntity<PageDTO<ProductDTO>> getByPage(@RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "10") int size,
+                                                         @RequestParam(required = false) String sortBy,
+                                                         @RequestParam(required = false) String sortDirection) {
+        return new ResponseEntity<>(productService.getByPage(page, size, sortBy, sortDirection),
                 HttpStatus.OK);
     }
 
