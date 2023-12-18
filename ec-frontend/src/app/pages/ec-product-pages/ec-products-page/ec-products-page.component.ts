@@ -3,11 +3,10 @@ import {CommonModule} from '@angular/common';
 import {
   EcProductItemComponent
 } from "../../../features/ec-product/components/ec-product-item/ec-product-item.component";
-import {selectProducts} from "../../../features/ec-product/store/product.reducer";
+import {selectPageProducts} from "../../../features/ec-product/store/product.reducer";
 import {Store} from "@ngrx/store";
 import {productActions} from "../../../features/ec-product/store/product.actions";
 import {Observable} from "rxjs";
-import {ProductModel} from "../../../shared/models/product.model";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {EcButtonComponent} from "../../../shared/components/ec-button/ec-button.component";
 import {ConfirmationDialogModel} from "../../../shared/models/confirmation-dialog.model";
@@ -16,6 +15,9 @@ import {DialogModel} from "../../../shared/models/dialog-model";
 import {
   EcCreateProductFormComponent
 } from "../../../features/ec-product/components/ec-create-product-form/ec-create-product-form.component";
+import {PageRequestType} from "../../../shared/models/page-request.type";
+import {PageType} from "../../../core/types/page.type";
+import {ProductType} from "../../../shared/models/product.type";
 
 @Component({
   selector: 'app-ec-products-page',
@@ -27,7 +29,7 @@ import {
 })
 export class EcProductsPageComponent implements OnInit {
 
-  products$: Observable<ProductModel[]> = this.store.select(selectProducts);
+  products$: Observable<PageType<ProductType[] > | undefined> = this.store.select(selectPageProducts);
 
   constructor(private readonly store: Store,
               private readonly dialogService: DialogService) {
@@ -62,7 +64,12 @@ export class EcProductsPageComponent implements OnInit {
   }
 
   private dispatchGetProducts(): void {
-    this.store.dispatch(productActions.getProducts());
+    const pageRequestType: PageRequestType = {
+      page: 0,
+      size:10,
+      sortBy: "price"
+    };
+    this.store.dispatch(productActions.getPageProducts({pageRequestType}));
   }
 
 }

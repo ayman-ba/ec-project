@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ProductModel} from "../../../../shared/models/product.model";
 import {MatCardModule} from "@angular/material/card";
 import {EcButtonComponent} from "../../../../shared/components/ec-button/ec-button.component";
+import {ProductType} from "../../../../shared/models/product.type";
 
 @Component({
   selector: 'ec-product-item',
@@ -13,15 +13,15 @@ import {EcButtonComponent} from "../../../../shared/components/ec-button/ec-butt
 })
 export class EcProductItemComponent {
 
-  @Input({required: true}) product!: ProductModel;
+  @Input({required: true}) product!: ProductType;
   @Output() onDeleteEvent = new EventEmitter<number>();
-  @Output() onEditEvent = new EventEmitter<ProductModel>();
+  @Output() onEditEvent = new EventEmitter<ProductType>();
 
   onDeleteProduct(event: number): void {
     this.onDeleteEvent.emit(event);
   }
 
-  onEditProduct(event: ProductModel): void {
+  onEditProduct(event: ProductType): void {
     this.onEditEvent.emit(event);
   }
 

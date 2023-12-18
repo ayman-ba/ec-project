@@ -1,10 +1,14 @@
 <ec-button [text]="'Add new product'"
            [type]="'button'"
-           (onClickEvent)="openAddProductModal()" />
+           (onClickEvent)="openAddProductModal()"/>
 
 <div class="products-container">
-  <ec-product-item *ngFor="let product of (products$ | async)"
-                   [product]="product"
+  @for (product of (products$ | async)?.elements; track product.id) {
+  <ec-product-item  [product]="product"
+                   class="product"
                    (onDeleteEvent)="onDeleteProduct($event)"/>
+  } @empty {
+    No products found.
+  }
 </div>
 

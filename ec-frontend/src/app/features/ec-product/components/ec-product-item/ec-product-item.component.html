@@ -1,10 +1,14 @@
-<mat-card class="example-card">
+<mat-card class="product-item">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar
+         class="example-header-image">
+    </div>
     <mat-card-title>{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product.name}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image
+       src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+       alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>
       {{product.description}}
@@ -15,9 +19,6 @@
       <ec-button [text]="'Delete'"
                  [type]="'button'"
                  (onClickEvent)="onDeleteProduct(product.id)"/>
-      <ec-button [text]="'Details'"
-                 [type]="'button'"
-                 (onClickEvent)="onEditProduct(product)"/>
     </mat-card-actions>
   </div>
 

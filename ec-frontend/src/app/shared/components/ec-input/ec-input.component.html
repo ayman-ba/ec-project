@@ -5,6 +5,6 @@
          [placeholder]="placeholder"
          [formControlName]="formControlKey">
 </mat-form-field>
-<ec-error-message [control]="formControl"
-                  [displayErrorMessage]="displayErrorMessage">
+<ec-error-message [validationErrors]="formControl.errors"
+                  [displayErrorMessage]="formControl.touched">
 </ec-error-message>

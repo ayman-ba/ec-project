@@ -28,7 +28,7 @@ export class EcInputComponent implements OnInit {
   @Input() disabled = false;
   @Input() placeholder = '';
   @Input() displayErrorMessage = true;
-  formControl: FormControl | null = null;
+  formControl!: FormControl;
 
   constructor(private readonly parentContainer: ControlContainer) {
   }
@@ -41,7 +41,7 @@ export class EcInputComponent implements OnInit {
     return this.parentContainer.control as FormGroup;
   }
 
-  getFormControl(): FormControl | null {
+  getFormControl(): FormControl {
     return this.getParentFormGroup().get(this.formControlKey) as FormControl;
   }
 

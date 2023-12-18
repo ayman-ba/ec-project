@@ -6,11 +6,12 @@ import {EcButtonComponent} from "../../../../shared/components/ec-button/ec-butt
 import {selectIsSubmitting} from "../../store/product.reducer";
 import {Store} from "@ngrx/store";
 import {productActions} from "../../store/product.actions";
+import {EcTextareaComponent} from "../../../../shared/components/ec-textarea/ec-textarea.component";
 
 @Component({
   selector: 'ec-create-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, EcInputComponent, EcButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, EcInputComponent, EcButtonComponent, EcTextareaComponent],
   templateUrl: './ec-create-product-form.component.html',
   styleUrls: ['./ec-create-product-form.component.scss']
 })

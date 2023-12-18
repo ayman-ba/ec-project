@@ -1,0 +1,14 @@
+<mat-form-field>
+  <mat-label>{{ label }}</mat-label>
+  <textarea matInput
+            [rows]="rows"
+            (focusout)="onFocusout()"
+            [value]="value"
+            (input)="onValueChange($event)"
+  >
+</textarea>
+</mat-form-field>
+<ec-error-message [validationErrors]="control.errors"
+                  [displayErrorMessage]="control.touched">
+</ec-error-message>
+

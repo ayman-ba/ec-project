@@ -2,7 +2,9 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProductRequestModel} from "../models/product-request.model";
-import {ProductModel} from "../../../shared/models/product.model";
+import {ProductType} from "../../../shared/models/product.type";
+import {PageRequestType} from "../../../shared/models/page-request.type";
+import {PageType} from "../../../core/types/page.type";
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +14,13 @@ export class ProductService {
   constructor(private readonly httpClient: HttpClient) {
   }
 
-  save(productRequest: ProductRequestModel): Observable<ProductModel> {
+  save(productRequest: ProductRequestModel): Observable<ProductType> {
     console.log(productRequest)
-    return this.httpClient.post<ProductModel>('/api/v1/products', productRequest);
+    return this.httpClient.post<ProductType>('/api/v1/products', productRequest);
   }
 
-  getAll(): Observable<ProductModel[]> {
-    return this.httpClient.get<ProductModel[]>('/api/v1/products');
+  getPage(pageRequestType: PageRequestType): Observable<PageType<ProductType[]>> {
+    return this.httpClient.get<PageType<ProductType[]>>(`/api/v1/products?page=${pageRequestType.page}&size=${pageRequestType.size}&sortBy=${pageRequestType.sortBy}`);
   }
 
   delete(id: number): Observable<void> {

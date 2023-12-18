@@ -2,8 +2,9 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {inject} from "@angular/core";
 import {ProductService} from "../services/product.service";
 import {productActions} from "./product.actions";
-import {catchError, map, of, switchMap, tap} from "rxjs";
-import {ProductModel} from "../../../shared/models/product.model";
+import {map, switchMap} from "rxjs";
+import {ProductType} from "../../../shared/models/product.type";
+import {PageType} from "../../../core/types/page.type";
 
 export const saveProductEffect = createEffect(
   (actions$ = inject(Actions),
@@ -11,11 +12,9 @@ export const saveProductEffect = createEffect(
     return actions$.pipe(
       ofType(productActions.saveProduct),
       switchMap(({productRequest}) => {
-        return productService.save(productRequest).pipe(
-          map((product: ProductModel) => {
-            return productActions.saveProductSuccess({product})
-          })
-        )
+        return productService.save(productRequest)
+          .pipe(map((product: ProductType) => productActions.saveProductSuccess({product}))
+          )
       })
     )
   },
@@ -26,11 +25,11 @@ export const getProductsEffect = createEffect(
   (actions$ = inject(Actions),
    productService = inject(ProductService)) => {
     return actions$.pipe(
-      ofType(productActions.getProducts),
-      switchMap(() => {
-        return productService.getAll().pipe(
-          map((products: ProductModel[]) => {
-            return productActions.getProductsSuccess({products})
+      ofType(productActions.getPageProducts),
+      switchMap(({pageRequestType}) => {
+        return productService.getPage(pageRequestType).pipe(
+          map((pageProducts: PageType<ProductType[]>) => {
+            return productActions.getPageProductsSuccess({pageProducts})
           })
         )
       })
@@ -46,9 +45,7 @@ export const deleteProductEffect = createEffect(
       ofType(productActions.deleteProduct),
       switchMap(({id}) => {
         return productService.delete(id).pipe(
-          map(() => {
-            return productActions.deleteProductSuccess({id});
-          })
+          map(() => productActions.deleteProductSuccess({id}))
         )
       })
     )

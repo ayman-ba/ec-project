@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormControl, ValidationErrors} from "@angular/forms";
+import {ValidationErrors} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 
 @Component({
@@ -8,11 +8,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
   standalone: true,
   imports: [CommonModule, MatFormFieldModule],
   templateUrl: './ec-error-message.component.html',
-  styleUrls: ['./ec-error-message.component.scss']
+  styleUrls: ['./ec-error-message.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EcErrorMessageComponent implements OnInit {
+export class EcErrorMessageComponent {
 
-  @Input({required: true}) control!: FormControl | null;
   @Input() displayErrorMessage = true;
   errorMessage = '';
 
@@ -21,14 +21,13 @@ export class EcErrorMessageComponent implements OnInit {
     ['email', 'This field is not a valid email.']
   ]);
 
-  ngOnInit(): void {
-    this.errorMessage = this.getFormControlErrorsMessages();
+  @Input({required: true}) set validationErrors(errors: ValidationErrors | null) {
+      this.errorMessage = this.getFormControlErrorsMessages(errors);
   }
 
-  getFormControlErrorsMessages(): string {
-    const controlErrors: ValidationErrors | null | undefined = this.control?.errors;
-    return controlErrors ?
-      Object.keys(controlErrors).map(key => this.errorsKeysToMessages.get(key)).join(', ')
+  getFormControlErrorsMessages(validationErrors: ValidationErrors | null): string {
+    return validationErrors ?
+      Object.keys(validationErrors).map(key => this.errorsKeysToMessages.get(key)).join(', ')
       : '';
   }
 }

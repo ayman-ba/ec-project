@@ -1,6 +1,7 @@
-import {ProductModel} from "../../../shared/models/product.model";
+import {PageType} from "../../../core/types/page.type";
+import {ProductType} from "../../../shared/models/product.type";
 
 export interface ProductState {
   isSubmitting: boolean;
-  products: ProductModel[];
+  pageProducts: PageType<ProductType[]> | undefined;
 }
