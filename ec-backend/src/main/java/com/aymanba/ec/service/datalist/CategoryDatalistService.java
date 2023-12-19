@@ -25,4 +25,8 @@ public class CategoryDatalistService implements DatalistService {
                 ).toList();
     }
 
+    @Override
+    public DatalistType getDatalistType() {
+        return DatalistType.CATEGORIES;
+    }
 }
