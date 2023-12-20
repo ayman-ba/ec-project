@@ -5,13 +5,13 @@ import {EcButtonComponent} from "../../../../shared/components/ec-button/ec-butt
 import {ProductType} from "../../../../shared/models/product.type";
 
 @Component({
-  selector: 'ec-product-item',
+  selector: 'ec-product-summary',
   standalone: true,
   imports: [CommonModule, MatCardModule, EcButtonComponent],
-  templateUrl: './ec-product-item.component.html',
-  styleUrls: ['./ec-product-item.component.scss']
+  templateUrl: './ec-product-summary.component.html',
+  styleUrls: ['./ec-product-summary.component.scss']
 })
-export class EcProductItemComponent {
+export class EcProductSummaryComponent {
 
   @Input({required: true}) product!: ProductType;
   @Output() onDeleteEvent = new EventEmitter<number>();

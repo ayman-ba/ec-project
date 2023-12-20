@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EcProductItemComponent } from './ec-product-item.component';
+import { EcProductSummaryComponent } from './ec-product-summary.component';
 
 describe('EcProductItemComponent', () => {
-  let component: EcProductItemComponent;
-  let fixture: ComponentFixture<EcProductItemComponent>;
+  let component: EcProductSummaryComponent;
+  let fixture: ComponentFixture<EcProductSummaryComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [EcProductItemComponent]
+      imports: [EcProductSummaryComponent]
     });
-    fixture = TestBed.createComponent(EcProductItemComponent);
+    fixture = TestBed.createComponent(EcProductSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

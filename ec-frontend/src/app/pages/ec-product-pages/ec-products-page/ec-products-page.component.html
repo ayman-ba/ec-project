@@ -4,7 +4,7 @@
 
 <div class="products-container">
   @for (product of (products$ | async)?.elements; track product.id) {
-  <ec-product-item  [product]="product"
+  <ec-product-summary  [product]="product"
                    class="product"
                    (onDeleteEvent)="onDeleteProduct($event)"/>
   } @empty {
