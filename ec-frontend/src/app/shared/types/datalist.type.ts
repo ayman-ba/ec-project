@@ -1,4 +1,4 @@
-export type DatalistType = {
-  id: number;
-  name: string;
+export type DatalistType<T> = {
+  code: T;
+  label: string;
 }

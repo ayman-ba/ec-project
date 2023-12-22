@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatCardModule} from "@angular/material/card";
-import {EcButtonComponent} from "../../../../shared/components/ec-button/ec-button.component";
-import {ProductType} from "../../../../shared/models/product.type";
+import {EcButtonComponent} from "../../../../../shared/components/ec-button/ec-button.component";
+import {ProductType} from "../../../../../shared/models/product.type";
 
 @Component({
   selector: 'ec-product-summary',

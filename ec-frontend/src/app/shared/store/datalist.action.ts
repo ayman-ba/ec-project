@@ -5,7 +5,7 @@ export const datalistActions = createActionGroup({
   source: 'Datalist',
   events: {
     getDatalist: props<{ name: string }>(),
-    getDatalistSuccess: props<{ name: string, datalist: DatalistType[] }>(),
+    getDatalistSuccess: props<{ name: string, datalist: DatalistType<any>[] }>(),
     getDatalistFailed: emptyProps()
   }
 })

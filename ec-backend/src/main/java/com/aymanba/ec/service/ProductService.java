@@ -20,7 +20,7 @@ public class ProductService {
         var product = ProductEntity.builder()
                 .name(productRequest.getName())
                 .price(productRequest.getPrice())
-                .category(productRequest.getCategory())
+//                .category(productRequest.getCategory())
                 .description(productRequest.getDescription())
                 .build();
         return productRepository.save(product);

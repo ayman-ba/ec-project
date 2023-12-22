@@ -1,4 +1,4 @@
-export interface ProductRequestModel {
+export type ProductRequestType = {
   name: string;
   price: number;
   category: string;

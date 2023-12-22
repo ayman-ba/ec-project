@@ -3,7 +3,7 @@
            (onClickEvent)="openAddProductModal()"/>
 
 <div class="products-container">
-  @for (product of (products$ | async)?.elements; track product.id) {
+  @for (product of products()?.elements; track product.id) {
   <ec-product-summary  [product]="product"
                    class="product"
                    (onDeleteEvent)="onDeleteProduct($event)"/>

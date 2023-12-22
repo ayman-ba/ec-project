@@ -9,5 +9,6 @@ import java.io.Serializable;
 public record ProductDTO(Integer id,
                          String name,
                          String description,
-                         Double price) implements BaseDTO<Integer>, Serializable {
+                         Double price,
+                         CategoryDTO category) implements BaseDTO<Integer>, Serializable {
 }

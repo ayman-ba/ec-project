@@ -4,5 +4,5 @@ export interface ConfirmationDialogModel {
   agreeButtonLabel: string;
   notAgreeButtonLabel: string;
   agreeButtonFunction(): void;
-  notAgreeButtonFunction(): void;
+  notAgreeButtonFunction?(): void;
 }

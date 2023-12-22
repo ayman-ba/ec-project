@@ -9,11 +9,12 @@
               [type]="'number'"
               [formControlKey]="'price'"></ec-input>
     <br>
-    <ec-input [label]="'Category'"
-              [formControlKey]="'category'"></ec-input>
+    <ec-select [label]="'Category'"
+               [options]="(categoriesOptions$ | async) || []"
+               formControlName="category"></ec-select>
     <br>
     <ec-textarea [label]="'Description'"
-        formControlName="description"></ec-textarea>
+                 formControlName="description"></ec-textarea>
     <br>
     <ec-button [text]="'Save'"></ec-button>
   </form>

@@ -21,6 +21,6 @@ export class EcConfirmationDialogComponent {
   }
 
   onNotAgree(): void {
-    this.confirmationDialogModel.notAgreeButtonFunction();
+    // this.confirmationDialogModel.notAgreeButtonFunction();
   }
 }

@@ -3,6 +3,7 @@
   <textarea matInput
             [rows]="rows"
             (focusout)="onFocusout()"
+            [disabled]="isDisabled"
             [value]="value"
             (input)="onValueChange($event)"
   >

@@ -1,17 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject, Injector, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {
-  ControlValueAccessor,
-  FormControl,
-  FormControlName,
-  FormGroupDirective,
-  NG_VALUE_ACCESSOR,
-  NgControl
-} from "@angular/forms";
+import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
-import {OnChangeFn, OnTouchFn} from "../../types/shared.type";
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {EcErrorMessageComponent} from "../ec-error-message/ec-error-message.component";
+import {AbstractBaseControlValueAccessor} from "../abstract-base-control-value-accessor";
 
 @Component({
   selector: 'ec-textarea',
@@ -28,58 +21,14 @@ import {EcErrorMessageComponent} from "../ec-error-message/ec-error-message.comp
     }
   ]
 })
-export class EcTextareaComponent implements ControlValueAccessor, OnInit {
+export class EcTextareaComponent extends AbstractBaseControlValueAccessor<string> {
 
-  value = '';
   @Input({required: true}) label!: string;
-  @Input() isDisabled = false;
   @Input() rows = 3;
-  private injector = inject(Injector, {self: true});
-  control!: FormControl;
-
-  private onChange: OnChangeFn<string> = () => {
-  };
-  private onTouch: OnTouchFn = () => {
-  };
-
-  ngOnInit(): void {
-    this.control = this.getFormControl();
-  }
-
-  writeValue(obj: string): void {
-    if (!obj || this.isDisabled) {
-      return;
-    }
-    this.value = obj;
-  }
-
-  registerOnChange(fn: OnChangeFn<string>): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: OnTouchFn): void {
-    this.onTouch = fn;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
-  }
 
   onValueChange(event: any): void {
-    const value = event.target.value;
+    const {value} = event.target;
     this.onChange(value);
-  }
-
-  onFocusout(): void {
-    this.onTouch();
-  }
-
-  private getFormControl(): FormControl {
-    const injectedNgControl: NgControl = this.injector.get(NgControl);
-    if (!(injectedNgControl instanceof FormControlName)) {
-      throw new Error('Control is not instance of FormControlName');
-    }
-    return this.injector.get(FormGroupDirective).getControl(injectedNgControl);
   }
 
 }

@@ -1,13 +1,18 @@
 import {createFeature, createReducer, on} from "@ngrx/store";
-import {ProductState} from "../models/product-state";
 import {productActions} from "./product.actions";
 import {ProductType} from "../../../shared/models/product.type";
+import {PageType} from "../../../core/types/page.type";
+
+type ProductState = {
+  isSubmitting: boolean;
+  pageProducts: PageType<ProductType[]> | undefined;
+}
 
 const initialState: ProductState = {
   isSubmitting: false,
   pageProducts: undefined
 }
-const productFeature = createFeature({
+export const productFeature = createFeature({
   name: 'product',
   reducer: createReducer(
     initialState,
@@ -25,6 +30,8 @@ const productFeature = createFeature({
 });
 
 export const {
-  name: productFeatureKey,
-  reducer: productReducer, selectIsSubmitting, selectPageProducts
+  name,
+  reducer: productReducer,
+  selectIsSubmitting,
+  selectPageProducts
 } = productFeature;
