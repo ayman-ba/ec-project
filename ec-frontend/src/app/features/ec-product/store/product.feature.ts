@@ -5,12 +5,12 @@ import {PageType} from "../../../core/types/page.type";
 
 type ProductState = {
   isSubmitting: boolean;
-  pageProducts: PageType<ProductType[]> | undefined;
+  pageProducts: PageType<ProductType> | null;
 }
 
 const initialState: ProductState = {
   isSubmitting: false,
-  pageProducts: undefined
+  pageProducts: null
 }
 export const productFeature = createFeature({
   name: 'product',
@@ -21,13 +21,20 @@ export const productFeature = createFeature({
     on(productActions.getPageProductsSuccess, (state, action) => ({...state, pageProducts: action.pageProducts})),
     on(productActions.deleteProductSuccess, (state, {id}) => ({
       ...state,
-      // pageProducts: {
-      //   ...state.pageProducts
-      //   // elements: state.pageProducts?.elements.filter(p => p.id !== id) as ProductType[]
-      // }
+      pageProducts: updatePageProductsOnDelete(state, id)
     }))
   )
 });
+
+const updatePageProductsOnDelete = (state: ProductState, id: number): PageType<ProductType> => (
+
+  {
+    ...state.pageProducts,
+    elements: state.pageProducts?.elements?.filter(item => item.id !== id) ?? [],
+    totalSizes: 0,
+    totalPages: 0
+  }
+);
 
 export const {
   name,

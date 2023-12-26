@@ -19,7 +19,7 @@ public class CategoryDatalistService implements DatalistService {
         return categoryRepository.findAll()
                 .stream()
                 .map(categoryEntity -> DatalistDTO.builder()
-                        .label(categoryEntity.getName())
+                        .label(categoryEntity.getLabel())
                         .code(categoryEntity.getId())
                         .build()
                 ).toList();

@@ -2,6 +2,7 @@ package com.aymanba.ec.service;
 
 import com.aymanba.ec.dto.PageDTO;
 import com.aymanba.ec.dto.product.ProductDTO;
+import com.aymanba.ec.model.product.CategoryEntity;
 import com.aymanba.ec.model.product.ProductEntity;
 import com.aymanba.ec.repository.ProductRepository;
 import com.aymanba.ec.request.ProductRequest;
@@ -18,10 +19,12 @@ public class ProductService {
 
     public ProductEntity save(ProductRequest productRequest) {
         var product = ProductEntity.builder()
-                .name(productRequest.getName())
-                .price(productRequest.getPrice())
-//                .category(productRequest.getCategory())
-                .description(productRequest.getDescription())
+                .name(productRequest.name())
+                .price(productRequest.price())
+                .category(CategoryEntity.builder()
+                        .id(productRequest.categoryCode())
+                        .build())
+                .description(productRequest.description())
                 .build();
         return productRepository.save(product);
     }

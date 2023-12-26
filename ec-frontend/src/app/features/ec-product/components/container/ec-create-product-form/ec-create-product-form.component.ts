@@ -31,7 +31,7 @@ export class EcCreateProductFormComponent implements OnInit {
   productForm = this.#formBuilder.group({
     name: ['', Validators.required],
     price: [0, Validators.required],
-    category: ['', Validators.required],
+    categoryCode: ['', Validators.required],
     description: ['', Validators.required]
   });
 

@@ -8,10 +8,10 @@ export const productActions = createActionGroup({
     source: 'Product',
     events: {
       saveProduct: props<{ productRequest: ProductRequestType }>(),
-      saveProductSuccess: props<{ product: ProductType }>(),
+      saveProductSuccess: props<{ productType: ProductType }>(),
       saveProductFailed: emptyProps(),
       getPageProducts: props<{pageRequestType: PageRequestType}>(),
-      getPageProductsSuccess: props<{ pageProducts: PageType<ProductType[]> }>(),
+      getPageProductsSuccess: props<{ pageProducts: PageType<ProductType> }>(),
       deleteProduct: props<{ id: number }>(),
       deleteProductSuccess: props<{ id: number }>()
     }

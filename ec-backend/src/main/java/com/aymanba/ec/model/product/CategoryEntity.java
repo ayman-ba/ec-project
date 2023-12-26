@@ -35,8 +35,8 @@ public class CategoryEntity implements BaseEntity<Short> {
             unique = true)
     private Short id;
 
-    @Column(name = "name",
+    @Column(name = "label",
             nullable = false,
             unique = true)
-    private String name;
+    private String label;
 }

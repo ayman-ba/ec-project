@@ -1,6 +1,6 @@
 export type ProductRequestType = {
   name: string;
   price: number;
-  category: string;
+  categoryCode: string;
   description: string;
 }
